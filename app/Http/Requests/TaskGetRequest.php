@@ -23,7 +23,7 @@ class TaskGetRequest extends FormRequest
     {
         return [
             'id_status' => 'nullable|integer',
-            'date' => 'nullable|date',
+            'date' => 'nullable|date_format:Y-m-d',
         ];
     }
 }
