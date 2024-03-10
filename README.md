@@ -7,6 +7,7 @@
         php artisan migrate
         php artisan db:seed --class="UserSeeder"
         php artisan db:seed --class="StatusSeeder"
+        php artisan serve
         ```
 # END-поинты:
     GET /api/tasks - возвращает список всех задач и информацию по ним.
