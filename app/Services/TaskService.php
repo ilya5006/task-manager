@@ -29,6 +29,14 @@ class TaskService
 
     public function create(array $params)
     {
+        if (! $this->isUserExist($params['id_owner'])) {
+            return response('Пользователя с переданным id_owner не существует', 400);
+        }
+
+        if (! $this->isUserExist($params['id_responsible'])) {
+            return response('Пользователя с переданным id_responsible не существует', 400);
+        }
+        
         $task = new Task();
         
         $task = $this->setTaskFilends(
@@ -54,8 +62,16 @@ class TaskService
             return response('', 404);
         }
 
-        if (! Status::where('id', (int)$params['id_status'])->exists()) {
-            return response('Передан неправельный id_status', 400);
+        if (! Status::where('id', $params['id_status'])->exists()) {
+            return response('Передан невалидный id_status', 400);
+        }
+
+        if (! $this->isUserExist($params['id_owner'])) {
+            return response('Пользователя с переданным id_owner не существует', 400);
+        }
+
+        if (! $this->isUserExist($params['id_responsible'])) {
+            return response('Пользователя с переданным id_responsible не существует', 400);
         }
 
         $task = $this->setTaskFilends(
@@ -131,6 +147,11 @@ class TaskService
         $this->statusFinder($task);
 
         return $task;
+    }
+
+    private function isUserExist(int $id)
+    {
+        return User::where('id', $id)->exists();
     }
 
     private function ownerFinder($task)
