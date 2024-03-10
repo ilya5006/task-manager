@@ -54,6 +54,10 @@ class TaskService
             return response('', 404);
         }
 
+        if (! Status::where('id', (int)$params['id_status'])->exists()) {
+            return response('Передан неправельный id_status', 400);
+        }
+
         $task = $this->setTaskFilends(
             $task,
             $params['name'],
