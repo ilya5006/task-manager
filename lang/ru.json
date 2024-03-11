@@ -1,0 +1,5 @@
+{
+    "wrong_id_owner": "Пользователя с переданным id_owner не существует",
+    "wrong_id_responsible": "Пользователя с переданным id_responsible не существует",
+    "wrong_id_status": "Передан невалидный id_status"
+}
